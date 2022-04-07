@@ -59,7 +59,13 @@ class ForecastApi {
     suspend fun getForecast(city: String): RootForecast {
         val response = api.forecast(city, API_KEY)
         if (response.isSuccessful) {
-            return api.forecast(city, API_KEY).body()!!
+            val rootForecast = api.forecast(city, API_KEY).body()!!
+            for (i in rootForecast.list) {
+                if (i.weather.isEmpty()) {
+                    throw java.lang.RuntimeException("Error: Invalid weather data")
+                }
+            }
+            return rootForecast
         } else {
             val error = kotlin.runCatching { response.errorBody()?.string() }
             throw RuntimeException("Error: ${response.code()}. ${error}.")
