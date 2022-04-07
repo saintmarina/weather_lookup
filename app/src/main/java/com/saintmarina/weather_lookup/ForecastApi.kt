@@ -60,8 +60,8 @@ class ForecastApi {
         val response = api.forecast(city, API_KEY)
         if (response.isSuccessful) {
             val rootForecast = api.forecast(city, API_KEY).body()!!
-            for (i in rootForecast.list) {
-                if (i.weather.isEmpty()) {
+            for (item in rootForecast.list) {
+                if (item.weather.isEmpty()) {
                     throw java.lang.RuntimeException("Error: Invalid weather data")
                 }
             }

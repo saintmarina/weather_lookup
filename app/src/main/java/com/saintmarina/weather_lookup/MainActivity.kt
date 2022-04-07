@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
         val button = findViewById<Button>(R.id.lookup)
         val api = ForecastApi()
 
-        button.setOnClickListener{
+        button.setOnClickListener {
             coroutine.launch {
                 try {
                     val rootForecast = api.getForecast(input.text.toString())
