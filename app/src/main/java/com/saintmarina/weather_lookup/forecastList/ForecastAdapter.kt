@@ -18,8 +18,8 @@ class ForecastAdapter(context: Context, private val resource: Int, private val o
         val item = convertView ?: LayoutInflater.from(context).inflate(resource, parent, false)
         return item.apply {
             setOnClickListener { onClick(forecast) }
-            findViewById<TextView>(R.id.weather_text).text = Util.prettyWeather(forecast.weather[0].main)
-            findViewById<TextView>(R.id.temperature_text).text = context.getString(R.string.temp_text, Util.prettyTemp(forecast.main.temp))
+            findViewById<TextView>(R.id.weather_text).text = Util.formattedWeather(forecast.weather[0].main)
+            findViewById<TextView>(R.id.temperature_text).text = context.getString(R.string.temp_text, Util.formattedTemperature(forecast.main.temp))
         }
     }
 }

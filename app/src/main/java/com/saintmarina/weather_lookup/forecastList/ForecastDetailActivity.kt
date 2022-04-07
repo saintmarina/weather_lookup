@@ -19,8 +19,8 @@ class ForecastDetailActivity : AppCompatActivity() {
         val weather = findViewById<TextView>(R.id.weather)
         val weatherDescription = findViewById<TextView>(R.id.weather_description)
 
-        temperature.text = Util.prettyTemp(forecast.main.temp)
-        temperatureFeelsLike.text = getString(R.string.feels_like_text, Util.prettyTemp(forecast.main.temp))
+        temperature.text = Util.formattedTemperature(forecast.main.temp)
+        temperatureFeelsLike.text = getString(R.string.feels_like_text, Util.formattedTemperature(forecast.main.temp))
         weather.text = forecast.weather[0].main
         weatherDescription.text = forecast.weather[0].description
     }
