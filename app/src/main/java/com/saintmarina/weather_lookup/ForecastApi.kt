@@ -57,6 +57,12 @@ class ForecastApi {
     }
 
     suspend fun getForecast(city: String): RootForecast {
-        return api.forecast(city, API_KEY).body()!!
+        val response = api.forecast(city, API_KEY)
+        if (response.isSuccessful) {
+            return api.forecast(city, API_KEY).body()!!
+        } else {
+            val error = kotlin.runCatching { response.errorBody()?.string() }
+            throw RuntimeException("Error: ${response.code()}. ${error}.")
+        }
     }
 }
